@@ -9,14 +9,48 @@ package com.bragin.area.model.core;
  */
 import javax.persistence.*;
 
-@Entity (name = "RealtyUnit")
+@MappedSuperclass
 public class RealtyUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Basic
-    private String name;
+    private String summary;
+
+    @ManyToOne
+    @JoinColumn (id = "id")
+    private User owner;
+
+    @Basic
+    private Long price;
+
+    @Basic
+    private RenterCathegory acceptableRenter;
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public RenterCathegory getAcceptableRenter() {
+        return acceptableRenter;
+    }
+
+    public void setAcceptableRenter(RenterCathegory acceptableRenter) {
+        this.acceptableRenter = acceptableRenter;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
@@ -26,11 +60,13 @@ public class RealtyUnit {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSummary(String name) {
+        this.summary = name;
     }
+
+
 }

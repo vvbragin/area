@@ -39,7 +39,7 @@ public class DefaultController {
         JSONArray array = new JSONArray();
         for (RealtyUnit ru : realtyUnitRepository.findAll()) {
             JSONObject obj = new JSONObject();
-            obj.put("name", ru.getName());
+            obj.put("name", ru.getSummary());
             array.put(obj);
         }
         return array.toString();
